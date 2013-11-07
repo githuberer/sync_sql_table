@@ -18,7 +18,14 @@ func_ruby()
   func_tmstamp
   if echo $lists > $rbdir/lists.conf
   then
-    $rbdir/sync-sql.rb && $rbdir/sync-file.rb
+    ( $rbdir/sync-sql.rb && $rbdir/sync-file.rb ) && \
+      echo "
+    ***********************************
+
+    SYNC IS FINISHED !!!
+
+    ***********************************
+    "
   fi
 }
 
@@ -27,10 +34,11 @@ then
   (
     if flock -n 9
     then
-      echo "Synchronization is processing background......"
+      echo "
+      Sync processed background......"
       (func_ruby &> $logfile)&
     else
-      echo "Error: Last sync Hasn't done...try again later......"
+      echo "Warning: Last synchronization is not finished...try again later......"
     fi
   ) 9> $lockfile
 else

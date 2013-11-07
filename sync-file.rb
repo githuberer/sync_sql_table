@@ -27,9 +27,9 @@ Net::SSH.start(
     bashcodes = <<-header
       LANG="en_US.UTF-8"
       file=/u/mfs#{e}
-      ( [[ ! -d ${file%/*} ]] && sudo -u #{file_user} mkdir -p ${file%/*} )
+      ( [[ ! -d ${file%/*} ]] && sudo -u #{$file_user} mkdir -p ${file%/*} )
       sudo scp #{$ip_master}:$file $file &&\
-      ( sudo chown #{file_user}.#{file_group} $file; sudo ls -l $file ) 
+      ( sudo chown #{$file_user}.#{$file_group} $file; sudo ls -l $file ) 
     header
     result = ssh.exec!("#{bashcodes}")
     puts <<-header
