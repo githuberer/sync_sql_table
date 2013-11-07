@@ -6,10 +6,12 @@ class SqlProcess
   attr_reader :master_records, :slave_records
 
   def initialize(ip_master, ip_slave)
-    @master_sql = SqlServer.new(ip_master)
-    @slave_sql = SqlServer.new(ip_slave)
-    @master_records = @master_sql.records
-    @slave_records = @slave_sql.records
+    #@master_sql = SqlServer.new(ip_master)
+    #@slave_sql = SqlServer.new(ip_slave)
+    #@master_records = @master_sql.records
+    #@slave_records = @slave_sql.records
+    @master_records = SqlServer.new(ip_master).records
+    @slave_records = SqlServer.new(ip_slave).records
   end
 
   def records_to_insert
@@ -66,9 +68,9 @@ class SqlProcess
 end
 
 
-#sql = SqlProcess.new($ip_master, $ip_slave)
-#puts sql.file_to_sync
 =begin
+sql = SqlProcess.new($ip_master, $ip_slave)
+puts sql.file_to_sync
 puts sql.records_to_insert.inspect
 puts sql.records_to_update.inspect
 =end

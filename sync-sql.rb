@@ -33,7 +33,7 @@ end
 
 puts <<-header
   \n\nSYNC SQL:
-  ###################################
+  ***********************************
 header
 
 client = Mysql2::Client.new(
@@ -60,4 +60,3 @@ sqls_insert.each do |e|
     #{result}
   header
 end
-

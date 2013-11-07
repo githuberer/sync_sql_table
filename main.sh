@@ -7,7 +7,7 @@ lockfile=/var/lock/cgi-bin/shellcodesMainrb.lock
 
 func_tmstamp()
 {
-  echo "
+  echo -e "\n\n\n
 ===========================
 $(date +%Y-%m-%d_%H:%M)
 ==========================="
@@ -19,7 +19,7 @@ func_ruby()
   if echo $lists > $rbdir/lists.conf
   then
     ( $rbdir/sync-sql.rb && $rbdir/sync-file.rb ) && \
-      echo "
+      echo -e "\n\n
     ***********************************
 
     SYNC IS FINISHED !!!
@@ -34,8 +34,7 @@ then
   (
     if flock -n 9
     then
-      echo "
-      Sync processed background......"
+      echo "Synchronization processed background......"
       (func_ruby &> $logfile)&
     else
       echo "Warning: Last synchronization is not finished...try again later......"
