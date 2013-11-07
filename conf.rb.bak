@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
+$ip_master = ''
+$ip_slave = ''
+
+$username = ''
+$password = ''
+
+$database = ''
+$table = ''
+
+$song_omids = IO.read("lists.conf").split("\s").select { |e| e =~ /^\d*$/ }.join(", ")
+$fields_filepath = %w{ field1 field2 field3 }
+
+$ip_file = ''
+$ssh_port = ''
+$ssh_user = ''
+$ssh_pass = ""
+
+#puts $song_omids
