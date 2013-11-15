@@ -2,7 +2,7 @@
 
 lists=$1
 rbdir=$(dirname $(realpath $0))
-logfile=/var/log/cgi-bin/sync_mc_or_music.log
+#logfile=/var/log/cgi-bin/sync_mc_or_music.log
 lockfile=/var/lock/cgi-bin/shellcodesMainrb.lock
 
 func_tmstamp()
@@ -21,21 +21,22 @@ func_ruby()
     ( $rbdir/sync-sql.rb && $rbdir/sync-file.rb ) && \
       echo -e "\n\n
     ***********************************
-
-    SYNC IS FINISHED !!!
-
+    *
+    * SYNC IS FINISHED !!!
+    * 
     ***********************************
     "
   fi
 }
+
 
 if [[ $# == 1 && $lists =~ [0-9]+ ]]
 then
   (
     if flock -n 9
     then
-      echo "Synchronization processed background......"
-      (func_ruby &> $logfile)&
+      #echo "Synchronization processed background......"
+      func_ruby
     else
       echo "Warning: Last synchronization is not finished...try again later......"
     fi
