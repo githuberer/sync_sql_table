@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
-#require_relative 'sql-server'
+require_relative 'sql-server'
 require_relative 'conf'
-require 'mysql2'
 
 
 class SqlProcess
