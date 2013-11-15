@@ -1,6 +1,26 @@
 #!/usr/bin/env ruby
-require_relative 'sql-server'
+#require_relative 'sql-server'
 require_relative 'conf'
+require 'mysql2'
+
+module SqlServer
+  def records
+    client = Mysql2::Client.new(
+      :host => ip,
+      :username => $username,
+      :password => $password,
+      :database => $database
+    )
+    @result = client.query(
+      "SELECT * FROM #{$table} 
+      WHERE om_id in ( #{$song_omids} )" 
+    )
+    @records = {}
+    @result.each {|e| @records[e.delete("om_id")] = e }
+  end
+end
+
+
 
 class SqlProcess
   attr_reader :master_records, :slave_records
