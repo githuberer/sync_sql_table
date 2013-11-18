@@ -2,6 +2,10 @@
 require 'cgi'
 require 'erb'
 
+
+
+# test
+
 logfile = "/var/log/cgi-bin/sync_mc_or_music.log"
 
 lists = CGI.new['lists'].split("\s").select { |e| e =~ /^\d*$/ }.join(" ")
