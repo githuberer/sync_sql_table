@@ -3,7 +3,7 @@
 lists=$1
 rbdir=$(dirname $(realpath $0))
 #logfile=/var/log/cgi-bin/sync_mc_or_music.log
-lockfile=/var/lock/cgi-bin/shellcodesMainrb.lock
+lockfile=$rbdir/shellcodesMainrb.lock
 
 func_tmstamp()
 {
@@ -28,6 +28,7 @@ func_ruby()
     "
   fi
 }
+
 
 
 if [[ $# == 1 && $lists =~ [0-9]+ ]]
