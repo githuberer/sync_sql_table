@@ -10,15 +10,24 @@ files = sql.file_to_sync
 #files = [ "/file/test/test/test.mp3", "/file/test/test/test.mp4", "/file/test/test/test.mp5" ]
 #puts files.inspect
 
+
+bashcodes = []
+files.each { |e| bashcodes << "/u/shscript/scp_file_mc_or_music.sh #{e}" }
+
+
+bashcodes_string = bashcodes.join("; ")
+
+result = %x[ /home/wyy/Dropbox/script/execmdRemote.sh '#{bashcodes_string}' '#{$ip_file}' 2>&1 ]
+
+puts result
+
+=begin
+
 puts <<-header
   \n\nSYNC FILE:
   ***********************************
 header
 
-bashcodes = []
-#files.each
-
-=begin
 Net::SSH.start(
   $ip_file, 
   $ssh_user, 
