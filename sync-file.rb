@@ -15,7 +15,10 @@ puts <<-header
   ***********************************
 header
 
+bashcodes = []
+#files.each
 
+=begin
 Net::SSH.start(
   $ip_file, 
   $ssh_user, 
@@ -24,19 +27,18 @@ Net::SSH.start(
 ) do |ssh|
 
   files.each do |e|
+
     bashcodes = <<-header
-      LANG="en_US.UTF-8"
-      file=/u/mfs#{e}
-      ( [[ ! -d ${file%/*} ]] && sudo -u #{$file_user} mkdir -p ${file%/*} )
-      sudo scp #{$ip_master}:$file $file &&\
-      ( sudo chown #{$file_user}.#{$file_group} $file; sudo ls -l $file ) 
+    /u/shscript/scp_file_mc_or_music.sh #{e} 2>&1
     header
+
     result = ssh.exec!("#{bashcodes}")
+
     puts <<-header
       ================
       #{result}
     header
   end
 end
-
+=end
 
