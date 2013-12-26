@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'net/ssh'
+#require 'rubygems'
+#require 'net/ssh'
 require_relative 'conf'
 require_relative 'sql-process'
 
