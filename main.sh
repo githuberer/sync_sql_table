@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+. /etc/profile.d/rvm.sh
+
 lists=$1
 rbdir=$(dirname $(realpath $0))
 #logfile=/var/log/cgi-bin/sync_mc_or_music.log
